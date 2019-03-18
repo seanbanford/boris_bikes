@@ -1,4 +1,4 @@
-require 'dockingstation.rb'
+require 'docking_station.rb'
 
 describe "DockingStation class" do
 
