@@ -10,7 +10,7 @@ describe DockingStation do
 
   describe '#dock' do
     it 'No capacity for bike' do
-      20.times { subject.dock Bike.new }
+      DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new }
       expect { subject.dock Bike.new }.to raise_error 'No capacity for bike'
     end
   end
@@ -24,6 +24,16 @@ describe DockingStation do
   it 'docks something' do
     bike = Bike.new
     expect(subject.dock(bike)).to eq [bike]
+  end
+
+  it 'allows capacity to be set' do
+    new_capacity = 30
+    ds = DockingStation.new(new_capacity)
+    expect(ds.capacity).to eq new_capacity
+  end
+
+  it 'defaults to DEFAULT_CAPACITY' do
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
 
   describe '#release_bike' do
